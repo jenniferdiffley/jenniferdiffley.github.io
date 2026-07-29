@@ -879,6 +879,14 @@ html[data-theme="dark"] .btn--ghost:hover { color: var(--ink); }
   text-align: center;
 }
 
+/* Campaigns with no public URL to point at — presented, not clickable.
+   Overrides the hover affordance so it doesn't look like a dead link. */
+.copy-card--static:hover {
+  border-color: var(--rule);
+  transform: none;
+  box-shadow: none;
+}
+
 /* --------------------------------------------------------------------------
    13. Recommendations
    -------------------------------------------------------------------------- */
