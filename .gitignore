@@ -1,0 +1,24 @@
+# ==========================================================================
+# Build inputs — NEVER publish these.
+#
+# src/ holds the plaintext case study markup and the unreleased Amazon design
+# mocks. If these were committed, the password protection would be pointless:
+# anyone could read the content or fetch the images by URL directly.
+#
+# The published case-studies/*.html files contain AES-GCM ciphertext only.
+# ==========================================================================
+src/
+
+# The case study password.
+tools/.password
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors
+.vscode/
+.idea/
+*.swp

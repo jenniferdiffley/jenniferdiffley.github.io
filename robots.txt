@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /case-studies/
+
+Sitemap: https://jenniferdiffley.github.io/sitemap.xml
