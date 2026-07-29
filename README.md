@@ -21,6 +21,7 @@ creating an account and publishing the site, step by step.
 | `case-study.js` | In-browser AES decryption and image lightbox | ✅ |
 | `case-studies/*.html` | Generated. Contains **ciphertext only** | ✅ |
 | `assets/` | Headshot and résumé PDF | ✅ |
+| `assets/resume-data.js` | Generated. Base64 résumé, used only as a download fallback | ✅ |
 | `tools/build.mjs` | The encryption build script | ✅ |
 | `tools/template.html` | Page shell the build script fills in | ✅ |
 | `tools/.password` | The case study password | ❌ gitignored |
@@ -127,6 +128,25 @@ To add a whole new case study: create `src/case-studies/<slug>.html`, add an ent
 `index.html` is a single readable file with commented section markers. Edit it directly —
 no build step. Sections in order: nav, hero, about, stats, case studies, copywriting,
 experience + education, skills, recommendations, contact, footer.
+
+---
+
+## Replacing the résumé
+
+Drop the new PDF in at `assets/Jennifer-Diffley-Resume-2025.pdf` (keep the filename, or
+update the two `href`s in `index.html`), then run `node tools/build.mjs` to regenerate
+`assets/resume-data.js`.
+
+That generated file is a base64 copy of the PDF. The "Download résumé" buttons force a
+real download by building a Blob rather than trusting the `download` attribute — Safari
+ignored that attribute for years, and any browser set to open PDFs inline will preview the
+file instead. `main.js` gets the bytes via `fetch()` normally, and only falls back to
+`resume-data.js` if fetch is unavailable, which is what happens when the site is opened
+over `file://`. So it costs nothing on a real page load, but the button behaves the same
+everywhere.
+
+If you forget to rebuild, the download still works over http(s) — only the `file://` case
+would serve a stale résumé.
 
 ---
 
