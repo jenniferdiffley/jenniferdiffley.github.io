@@ -27,6 +27,9 @@
   --pine-wash: #edf3f1;
   --bronze: #a98363;
   --bronze-soft: #cbb49c;
+  /* Darker bronze for small text — --bronze is only 3.3:1 on --paper, which
+     fails WCAG AA below 18pt. Use this wherever bronze carries actual words. */
+  --bronze-ink: #8a6543;
 
   /* Layout */
   --container: 1120px;
@@ -58,6 +61,8 @@ html[data-theme="dark"] {
   --pine-wash: #1b2b28;
   --bronze: #c9a583;
   --bronze-soft: #8a7159;
+  /* Already 8.2:1 on the dark paper — no separate text shade needed. */
+  --bronze-ink: #c9a583;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
@@ -725,7 +730,7 @@ html[data-theme="dark"] .btn--ghost:hover { color: var(--ink); }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--bronze-ink);
 }
 .tl-date {
   font-family: var(--font-ui);

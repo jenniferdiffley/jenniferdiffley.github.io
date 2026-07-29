@@ -304,7 +304,7 @@ html[data-theme="dark"] .gate-error { color: #e88a7d; }
   font-family: var(--font-display);
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--bronze);
+  color: var(--bronze-ink);
   width: 34px;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--rule);
@@ -428,7 +428,7 @@ html[data-theme="dark"] .gate-error { color: #e88a7d; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--bronze);
+  color: var(--bronze-ink);
   margin: 0 0 10px !important;
 }
 
