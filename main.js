@@ -5,6 +5,10 @@
 (function () {
   'use strict';
 
+  // Tells the <head> watchdog that this file ran, so it leaves the `js` class
+  // (and therefore the scroll-reveal animations) in place.
+  window.__jdReady = true;
+
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------------
@@ -135,14 +139,30 @@
       });
     }, { threshold: 0.5 });
 
-    Array.prototype.forEach.call(stats, function (el) { statObserver.observe(el); });
+    Array.prototype.forEach.call(stats, function (el) {
+      // The markup ships with the final value so it still reads correctly with
+      // JS off. Now that we know we're animating, zero it out first.
+      if (!prefersReduced) renderStat(el, 0);
+      statObserver.observe(el);
+    });
   }
 
   /* ------------------------------------------------------------------------
      Active nav link
+     Only observe sections that actually have a nav link — otherwise scrolling
+     through Impact or Skills clears the highlight entirely.
      ------------------------------------------------------------------------ */
-  var sections = document.querySelectorAll('main section[id]');
   var navAnchors = document.querySelectorAll('.nav-links a');
+  var navTargets = {};
+  Array.prototype.forEach.call(navAnchors, function (a) {
+    var href = a.getAttribute('href') || '';
+    if (href.charAt(0) === '#' && href.length > 1) navTargets[href.slice(1)] = true;
+  });
+
+  var sections = Array.prototype.filter.call(
+    document.querySelectorAll('main section[id]'),
+    function (s) { return navTargets[s.getAttribute('id')]; }
+  );
 
   if (sections.length && navAnchors.length && 'IntersectionObserver' in window) {
     var sectionObserver = new IntersectionObserver(function (entries) {
@@ -150,12 +170,15 @@
         if (!entry.isIntersecting) return;
         var id = entry.target.getAttribute('id');
         Array.prototype.forEach.call(navAnchors, function (a) {
-          a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+          var active = a.getAttribute('href') === '#' + id;
+          a.classList.toggle('is-active', active);
+          if (active) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
 
-    Array.prototype.forEach.call(sections, function (s) { sectionObserver.observe(s); });
+    sections.forEach(function (s) { sectionObserver.observe(s); });
   }
 
   /* ------------------------------------------------------------------------

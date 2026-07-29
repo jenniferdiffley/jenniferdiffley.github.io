@@ -80,6 +80,10 @@ diffley-ux-2026
 
 Stored in `tools/.password`. **Change this before sharing the site** — see below.
 
+> Note: `pw.txt` in the project root is gitignored but is **not** read by the build.
+> Only `tools/.password` (or the `PORTFOLIO_PASSWORD` env var) determines the password.
+> If you put a password in `pw.txt`, copy it into `tools/.password` and rebuild.
+
 ---
 
 ## Changing the password

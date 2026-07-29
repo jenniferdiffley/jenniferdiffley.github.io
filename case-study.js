@@ -189,7 +189,8 @@
     });
 
     box.addEventListener('click', function (e) {
-      if (e.target === box || e.target === boxImg || e.target === closeBtn) close();
+      // closeBtn has its own listener — excluded here so close() isn't run twice.
+      if (e.target === box || e.target === boxImg) close();
     });
     if (closeBtn) closeBtn.addEventListener('click', close);
     document.addEventListener('keydown', function (e) {

@@ -9,6 +9,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..600,0..100,0..1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&display=swap" rel="stylesheet">
+<!-- Root-absolute paths are deliberate. GitHub Pages serves this file for a
+     missing URL at ANY depth, so a relative href would resolve against that
+     path (a bad /case-studies/xyz would look for /case-studies/main.css and
+     load nothing). This assumes the site is served from the domain root,
+     which is true for a <username>.github.io repo. If the site is ever moved
+     to a project repo served under a subpath, prefix both with that subpath. -->
 <link rel="stylesheet" href="/main.css">
 <script>
   (function () {

@@ -425,16 +425,20 @@ html[data-theme="dark"] .btn--ghost:hover { color: var(--ink); }
   line-height: 1.75;
 }
 
-/* Reveal on scroll */
-.reveal {
+/* Reveal on scroll
+   Scoped to html.js (set by the inline script in <head>) so that with
+   JavaScript disabled — or if main.js fails to load — the content is simply
+   visible rather than stuck at opacity 0. Keep the .js prefix on every rule
+   below, or specificity will leave content hidden in print / reduced motion. */
+html.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+html.js .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
   * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
@@ -1146,6 +1150,6 @@ html[data-theme="dark"] .form-status.is-err { color: #e88a7d; }
 @media print {
   .site-nav, .hero-actions, .contact-form, .to-top, .theme-toggle { display: none !important; }
   body { background: #fff; color: #000; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, html.js .reveal { opacity: 1; transform: none; }
   .section { border-top: 1px solid #ccc; page-break-inside: avoid; }
 }
