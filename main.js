@@ -229,6 +229,44 @@
   }
 
   /* ------------------------------------------------------------------------
+     Forced downloads (résumé)
+     The `download` attribute alone isn't reliable: Safari has historically
+     ignored it, and a browser set to "open PDFs in browser" will preview the
+     file instead. Fetching it as a blob and clicking a synthetic link forces
+     a real download everywhere. Falls back to normal navigation if fetch
+     fails (e.g. opened over file://, where fetch is blocked by CORS).
+     ------------------------------------------------------------------------ */
+  Array.prototype.forEach.call(document.querySelectorAll('a[data-download]'), function (link) {
+    link.addEventListener('click', function (e) {
+      if (!window.fetch || !window.URL || !window.URL.createObjectURL) return;
+
+      var url = link.getAttribute('href');
+      var filename = link.getAttribute('download') || url.split('/').pop();
+      e.preventDefault();
+
+      fetch(url)
+        .then(function (res) {
+          if (!res.ok) throw new Error('fetch failed');
+          return res.blob();
+        })
+        .then(function (blob) {
+          var objectUrl = URL.createObjectURL(blob);
+          var temp = document.createElement('a');
+          temp.href = objectUrl;
+          temp.download = filename;
+          document.body.appendChild(temp);
+          temp.click();
+          document.body.removeChild(temp);
+          setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 10000);
+        })
+        .catch(function () {
+          // Couldn't fetch it — let the browser handle the link normally.
+          window.location.href = url;
+        });
+    });
+  });
+
+  /* ------------------------------------------------------------------------
      Footer year
      ------------------------------------------------------------------------ */
   var year = document.getElementById('year');
