@@ -186,7 +186,7 @@
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setStatus('That email address doesn\'t look right.', 'err');
+        setStatus('That email address doesn’t look right.', 'err');
         return;
       }
       if (form.elements._gotcha.value) return; // bot

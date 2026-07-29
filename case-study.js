@@ -6,7 +6,8 @@
    password fails the GCM authentication tag, so nothing renders.
 
    Requires a secure context (https:// or http://localhost) for
-   window.crypto.subtle. Opening the file directly with file:// will not work.
+   window.crypto.subtle. Chrome and Firefox also treat file:// as secure;
+   Safari does not, so test locally over http rather than opening the file.
    ========================================================================== */
 (function () {
   'use strict';
@@ -86,7 +87,7 @@
   /* ---------------------------------------------------------------------- */
   function unlock(password, isAuto) {
     if (!supported()) {
-      setError('This browser can\'t decrypt the case study. Please use a current version of Safari, Chrome, Firefox, or Edge over https.');
+      setError('This browser can’t decrypt the case study. Please use a current version of Safari, Chrome, Firefox, or Edge over https.');
       return Promise.resolve(false);
     }
 
@@ -108,7 +109,7 @@
         try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
         return false;
       }
-      setError('That password isn\'t right. Check for extra spaces, or request access below.');
+      setError('That password isn’t right. Check for extra spaces, or request access below.');
       var card = gate.querySelector('.gate-card');
       if (card) {
         card.classList.remove('gate-shake');
