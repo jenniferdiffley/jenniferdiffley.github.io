@@ -11,6 +11,15 @@ src/
 
 # The case study password.
 tools/.password
+pw.txt
+
+# Anything else that looks like a credential note, wherever it lives.
+*password*.txt
+*passwords*.txt
+*secret*.txt
+*credentials*.txt
+.env
+.env.*
 
 # macOS
 .DS_Store
