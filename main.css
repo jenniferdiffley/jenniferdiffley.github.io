@@ -419,7 +419,13 @@ html[data-theme="dark"] .btn--ghost:hover { color: var(--ink); }
 }
 .section-intro {
   color: var(--ink-mid);
-  max-width: var(--prose);
+  /* Wider than --prose. These are one- or two-line deks sitting under a
+     full-width heading, so a 68ch measure left them filling barely half the
+     container and reading as a mistake. 88ch lands around 85 characters a
+     line — at the top of the comfortable range, but still short of the
+     ~120 characters a full-width line would give. */
+  max-width: 88ch;
+  text-wrap: pretty;
   margin: 0 0 clamp(36px, 5vw, 56px);
   font-size: 1.0625rem;
   line-height: 1.75;
