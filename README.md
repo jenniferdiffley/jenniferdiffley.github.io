@@ -4,8 +4,10 @@ A hand-coded static portfolio site. No frameworks, no build step for the main pa
 dependencies, no subscriptions. The case studies are encrypted with AES-256-GCM and
 decrypted in the browser with a password.
 
-**New to GitHub?** Start with **[GITHUB-SETUP.md](GITHUB-SETUP.md)** — it walks through
-creating an account and publishing the site, step by step.
+**Publishing?** See **[GITHUB-SETUP.md](GITHUB-SETUP.md)** — repo, DNS, and the launch
+checklist.
+
+Live at **https://jenniferdiffley.com** (repo: `jenniferdiffley/jenniferdiffley`).
 
 ---
 
@@ -21,6 +23,7 @@ creating an account and publishing the site, step by step.
 | `case-study.js` | In-browser AES decryption and image lightbox | ✅ |
 | `case-studies/*.html` | Generated. Contains **ciphertext only** | ✅ |
 | `assets/` | Headshot and résumé PDF | ✅ |
+| `CNAME` | Custom domain for GitHub Pages (`jenniferdiffley.com`) | ✅ |
 | `assets/resume-data.js` | Generated. Base64 résumé, used only as a download fallback | ✅ |
 | `tools/build.mjs` | The encryption build script | ✅ |
 | `tools/template.html` | Page shell the build script fills in | ✅ |
@@ -28,6 +31,7 @@ creating an account and publishing the site, step by step.
 | `src/case-studies/*.html` | **Readable** case study markup — the real source | ❌ gitignored |
 | `src/mocks/*.jpg` | Unreleased Amazon design mocks | ❌ gitignored |
 | `src/*.png` | Original full-resolution mock exports | ❌ gitignored |
+| `src/img/` | Original full-resolution headshot | ❌ gitignored |
 
 > ### The one rule
 > **Never commit `src/` or `tools/.password`.**
@@ -166,9 +170,9 @@ the case study decryption works in every browser.
 
 ---
 
-## Two things to finish configuring
+## Remaining configuration
 
-Both are marked with comments in `index.html`.
+Only Google Analytics is outstanding; the marker is in `index.html`.
 
 ### 1. Google Analytics
 
@@ -176,18 +180,12 @@ Find the `GOOGLE ANALYTICS 4` block in `<head>`, replace `G-XXXXXXXXXX` with the
 Measurement ID from [analytics.google.com](https://analytics.google.com) (Admin → Data
 Streams), and remove the `<!--` / `-->` around it.
 
-### 2. Contact form
+### 2. Contact form — done
 
-The form currently falls back to opening the visitor's email client with the message
-pre-filled — which works, but keeps the visitor in their mail app.
-
-To have submissions arrive by email instead:
-
-1. Sign up free at [formspree.io](https://formspree.io)
-2. Create a form and copy the endpoint (e.g. `https://formspree.io/f/abcdwxyz`)
-3. Paste it into `data-endpoint=""` on the `<form id="contactForm">` element
-
-The free tier covers 50 submissions per month.
+Wired to Jennifer's Formspree endpoint (`https://formspree.io/f/xpqvnkqy`) via
+`data-endpoint` on `<form id="contactForm">`. Submissions go to her inbox; the free tier
+covers 50 per month. If `fetch` ever fails, the form falls back to opening the visitor's
+mail client with the message pre-filled, so it can't silently swallow an enquiry.
 
 ---
 

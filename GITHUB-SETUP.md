@@ -1,200 +1,127 @@
-# Getting your portfolio online
+# Publishing the site
 
-A step-by-step guide, written for someone who has never used GitHub. No coding required —
-GitHub is just acting as free, fast, reliable web hosting here.
+Jennifer's accounts are already set up, so most of the original guesswork is gone.
+Current state:
 
-Total time: about 20 minutes.
-
----
-
-## What you're setting up
-
-Your site is a set of files. GitHub stores them and serves them to the internet for free,
-over HTTPS, with no monthly fee and no subscription. This is called **GitHub Pages**.
-
-There is one important detail specific to your site: **the case studies are encrypted**.
-Some files on your computer must never be uploaded, because uploading them would defeat the
-password protection. Step 4 handles this automatically — just follow it exactly.
+| Thing | Value |
+|---|---|
+| GitHub account | `jenniferdiffley` |
+| Repository | `https://github.com/jenniferdiffley/jenniferdiffley` |
+| Custom domain | `jenniferdiffley.com` (she owns it) |
+| Live address | `https://jenniferdiffley.com` |
+| Formspree endpoint | `https://formspree.io/f/xpqvnkqy` (wired up) |
 
 ---
 
-## Step 1 — Create your GitHub account
+## Step 1 — Jennifer grants push access
 
-1. Go to **[github.com/signup](https://github.com/signup)**
-2. Enter your email (`jenniferdiffley@gmail.com` is fine)
-3. Create a password and solve the puzzle
-4. **Choose your username carefully.** It becomes part of your website address.
+The repository is on her account, so she has to let you in. Ask her to:
 
-   | Username | Your site will be |
-   |---|---|
-   | `jenniferdiffley` | `https://jenniferdiffley.github.io` |
-   | `jdiffley` | `https://jdiffley.github.io` |
+1. Open <https://github.com/jenniferdiffley/jenniferdiffley/settings/access>
+2. Click **Add people**
+3. Enter the collaborator's GitHub username and send the invite
+4. The collaborator accepts via the emailed link
 
-   Lowercase, no spaces. `jenniferdiffley` is the cleanest option if it's available.
-
-5. Verify your email address when GitHub sends the code.
-
-You can skip every "personalize your experience" question. Choose the **Free** plan.
+This is much less error-prone than walking a non-technical client through GitHub Desktop
+and a manual file copy — and it avoids the risk of her accidentally uploading `src/`.
 
 ---
 
-## Step 2 — Create the repository
+## Step 2 — Push
 
-A "repository" (or "repo") is just a folder for your project.
+From the project folder:
 
-1. Once logged in, click the **+** in the top-right → **New repository**
-2. **Repository name** — this matters. Type exactly:
-
-   ```
-   <your-username>.github.io
-   ```
-
-   So if your username is `jenniferdiffley`, the repository name is
-   `jenniferdiffley.github.io`. This exact naming is what tells GitHub to publish it as
-   your main website.
-
-3. Set it to **Public**.
-   *(The case studies stay protected — they're encrypted, so a public repository only
-   exposes scrambled text. See the note at the bottom.)*
-4. Leave "Add a README file" **unchecked**.
-5. Click **Create repository**.
-
----
-
-## Step 3 — Install GitHub Desktop
-
-This is the app that moves files from your computer to GitHub. It avoids the command line
-entirely.
-
-1. Download from **[desktop.github.com](https://desktop.github.com)**
-2. Install and open it
-3. Click **Sign in to GitHub.com** and log in with the account from Step 1
-4. When it asks to configure Git, accept the defaults
-
----
-
-## Step 4 — Add your site files
-
-1. In GitHub Desktop: **File → Clone repository**
-2. Select your `<your-username>.github.io` repository → **Clone**.
-   Note the folder it saves to (usually `Documents/GitHub/<your-username>.github.io`)
-3. Open that folder in Finder
-4. From the delivered project folder, copy **everything except the `src` folder** into it:
-
-   ```
-   ✅ COPY THESE                    ❌ DO NOT COPY
-   ─────────────────────            ─────────────────────
-   index.html                       src/          ← never upload this
-   404.html
-   main.css
-   main.js
-   case-study.css
-   case-study.js
-   robots.txt
-   sitemap.xml
-   .gitignore       ← important
-   assets/
-   case-studies/
-   tools/
-   ```
-
-   > **Why not `src`?** That folder holds the readable, unencrypted case studies and the
-   > original design images. The `.gitignore` file also blocks it automatically as a
-   > safety net — which is why copying `.gitignore` matters.
-
-5. Back in GitHub Desktop you'll see the files listed on the left.
-6. In the bottom-left box, type a short message like `Add portfolio site`
-7. Click **Commit to main**
-8. Click **Push origin** at the top
-
----
-
-## Step 5 — Turn on GitHub Pages
-
-1. On github.com, open your repository
-2. Click **Settings** (top of the page)
-3. In the left sidebar, click **Pages**
-4. Under "Build and deployment":
-   - **Source:** Deploy from a branch
-   - **Branch:** `main`, folder `/ (root)`
-5. Click **Save**
-
-Wait 1–3 minutes, then reload the page. GitHub will show a green banner with your live
-address:
-
-```
-https://<your-username>.github.io
+```bash
+git remote add origin https://github.com/jenniferdiffley/jenniferdiffley.git
+git push -u origin main
 ```
 
-That's your portfolio. Send it to anyone.
+If the remote already exists, update it instead:
+
+```bash
+git remote set-url origin https://github.com/jenniferdiffley/jenniferdiffley.git
+```
+
+> **Before pushing, confirm what's tracked:**
+> ```bash
+> git ls-files | grep -E '^src/|password|pw\.txt'   # must print nothing
+> ```
+> `src/` holds the readable case studies and the unreleased Amazon mocks. If those go up,
+> the encryption is pointless.
 
 ---
 
-## Step 6 — Test it
+## Step 3 — Enable GitHub Pages
 
-Open your site and check:
+On github.com → the repo → **Settings** → **Pages**:
 
-- [ ] The homepage loads with your name, photo, and sections
-- [ ] The dark mode button (top right) works
-- [ ] Clicking a case study shows the **password screen**
-- [ ] Entering your password unlocks the case study and the images appear
-- [ ] Entering a *wrong* password shows an error and reveals nothing
-- [ ] It looks right on your phone
+- **Source:** Deploy from a branch
+- **Branch:** `main`, folder `/ (root)`
+- **Save**
+
+The `CNAME` file in the repo root already contains `jenniferdiffley.com`, so Pages will
+pick the custom domain up automatically once DNS resolves.
 
 ---
 
-## Using a custom domain (optional)
+## Step 4 — Point the domain at GitHub
 
-You mentioned you already have a hosting provider. If you own a domain like
-`jenniferdiffley.com`, you can point it at this site instead of the `github.io` address.
+Jennifer needs to add these records wherever `jenniferdiffley.com` is managed (her
+registrar or host). Existing A records for `@` should be replaced, not added to.
 
-1. **In your domain provider's DNS settings**, add these records:
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `jenniferdiffley.github.io.` |
 
-   | Type | Name | Value |
-   |---|---|---|
-   | A | `@` | `185.199.108.153` |
-   | A | `@` | `185.199.109.153` |
-   | A | `@` | `185.199.110.153` |
-   | A | `@` | `185.199.111.153` |
-   | CNAME | `www` | `<your-username>.github.io` |
+Then in **Settings → Pages → Custom domain**, confirm `jenniferdiffley.com` is present and
+the DNS check passes. Once it does, tick **Enforce HTTPS** (the certificate can take up to
+an hour to issue — the checkbox stays greyed out until then).
 
-2. **In GitHub** → Settings → Pages → Custom domain: enter `jenniferdiffley.com` → Save
-3. Wait for the check to pass, then tick **Enforce HTTPS**
+DNS propagation is usually minutes but can take several hours. Verify with:
 
-DNS changes can take a few hours to take effect. Once it works, update the two URLs marked
-in `index.html` (`<link rel="canonical">` and the `og:url` tag) to your real domain.
+```bash
+dig +short jenniferdiffley.com
+curl -sI https://jenniferdiffley.com | head -1
+```
+
+> **Note on the repo name.** The repo is `jenniferdiffley`, not
+> `jenniferdiffley.github.io`, which makes it a *project* page. That's fine — with a custom
+> domain the site is still served at the domain root, so every path works. The only side
+> effect is that the bare fallback URL is
+> `jenniferdiffley.github.io/jenniferdiffley/`, where `404.html` renders unstyled because
+> it uses root-absolute paths. Harmless, since `jenniferdiffley.com` is the address she'll
+> actually share. Renaming the repo to `jenniferdiffley.github.io` would tidy that up if
+> you'd rather.
+
+---
+
+## Step 5 — Test the live site
+
+- [ ] `https://jenniferdiffley.com` loads over HTTPS with a valid certificate
+- [ ] `http://` and `www.` both redirect to the canonical HTTPS address
+- [ ] Dark mode toggle works and survives a reload
+- [ ] **Download résumé** downloads the PDF rather than previewing it
+- [ ] A case study shows the password gate; the correct password unlocks it and the mocks appear
+- [ ] A wrong password shows an error and reveals nothing
+- [ ] View Source on a case study shows only ciphertext
+- [ ] `https://jenniferdiffley.com/assets/mocks/` returns 404 (the mocks must have no URL)
+- [ ] Contact form submits and the message arrives in her inbox via Formspree
+- [ ] A made-up URL like `/nope` shows the styled 404 page
+- [ ] Layout holds up on a phone
 
 ---
 
 ## Making changes later
 
-Any time you edit a file:
+Edit, commit, push — Pages redeploys in about a minute:
 
-1. Open GitHub Desktop
-2. Type a short description of what changed
-3. **Commit to main** → **Push origin**
+```bash
+git add -A && git commit -m "Describe the change" && git push
+```
 
-Your live site updates within about a minute.
-
-To change your case study password or edit the case studies themselves, see
-`README.md` — that one does involve one terminal command, and I'm happy to walk you
-through it or do it for you.
-
----
-
-## A note on the password protection
-
-Your case studies are protected with **AES-256 encryption**, not just a hidden password
-field. Concretely:
-
-- The published files contain scrambled text only. There is no copy of the readable
-  content anywhere online.
-- "View Source" on a case study page shows ciphertext.
-- The images are encrypted inside the same bundle, so nobody can guess an image URL and
-  download the mocks directly.
-- The password is never stored on the site. It's used to derive the decryption key in the
-  visitor's browser.
-
-This is why your public repository is safe, **as long as the `src` folder is never
-uploaded.** That folder is the only place the readable version lives, and `.gitignore`
-is configured to block it.
+To change the case study password or edit a case study, see `README.md`. Those steps
+require `node tools/build.mjs`, because the case studies are encrypted at build time.
