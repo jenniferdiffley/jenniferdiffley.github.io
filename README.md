@@ -76,17 +76,21 @@ Practical consequences:
 
 ---
 
-## Current password
+## The case study password
 
+**Deliberately not recorded in this repository.** This repo is public and GitHub renders
+this file on the front page, so a password written here would be visible to everyone —
+which would defeat the encryption completely.
+
+It lives in `tools/.password`, which is gitignored, and is shared with Jennifer privately.
+To read the one currently in use:
+
+```bash
+cat tools/.password
 ```
-diffley-ux-2026
-```
 
-Stored in `tools/.password`. **Change this before sharing the site** — see below.
-
-> Note: `pw.txt` in the project root is gitignored but is **not** read by the build.
-> Only `tools/.password` (or the `PORTFOLIO_PASSWORD` env var) determines the password.
-> If you put a password in `pw.txt`, copy it into `tools/.password` and rebuild.
+> `pw.txt` in the project root is also gitignored, and is **not** read by the build. Only
+> `tools/.password` (or the `PORTFOLIO_PASSWORD` env var) determines the password.
 
 ---
 
