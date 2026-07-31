@@ -56,6 +56,15 @@ address `jenniferdiffley.github.io`. Any other name would give you something lon
 
 Nothing breaks by renaming. GitHub forwards the old name automatically.
 
+**While you're on that page, one thing to confirm.** Scroll to the bottom, to the section
+headed **Danger Zone**. It should read *"Change repository visibility — This repository is
+currently public."* If it says **private**, click **Change visibility** and switch it to
+public.
+
+On a free GitHub account, websites can only be published from public repositories, so the
+site won't go live otherwise. Your case studies stay protected either way — they're
+encrypted, so a public folder contains nothing but scrambled text.
+
 ---
 
 ## Step 2 — Give Joon access so he can upload the site

@@ -233,13 +233,10 @@ Before pushing, confirm nothing sensitive is tracked:
 git ls-files | grep -E '^src/|password|pw\.txt'   # must print nothing
 ```
 
-**If the push is rejected** with `non-fast-forward` or `fetch first`, her repository already
-has a commit in it — usually an auto-created `README` from when she made it. Nothing there
-is worth keeping, so overwrite it:
-
-```bash
-git push --force client main
-```
+Her repository was confirmed empty (no initial commit, no `README`), so a plain push
+succeeds. If it is ever rejected with `non-fast-forward` or `fetch first`, something has
+been committed there since; nothing in it would be worth keeping, so overwrite with
+`git push --force client main`.
 
 Then tell her to enable Pages. Subsequent updates are just `git push client main`.
 
