@@ -214,6 +214,40 @@ mail client with the message pre-filled, so it can't silently swallow an enquiry
 
 ---
 
+## Deploying to the client's repository
+
+The live site lives on Jennifer's account. She renames the repo and grants collaborator
+access (see [GITHUB-SETUP.md](GITHUB-SETUP.md)); the push happens from here.
+
+Add her repo as a **second** remote rather than replacing `origin`, so this copy of the work
+survives after the engagement ends:
+
+```bash
+git remote add client https://github.com/jenniferdiffley/jenniferdiffley.github.io.git
+git push client main
+```
+
+Before pushing, confirm nothing sensitive is tracked:
+
+```bash
+git ls-files | grep -E '^src/|password|pw\.txt'   # must print nothing
+```
+
+**If the push is rejected** with `non-fast-forward` or `fetch first`, her repository already
+has a commit in it — usually an auto-created `README` from when she made it. Nothing there
+is worth keeping, so overwrite it:
+
+```bash
+git push --force client main
+```
+
+Then tell her to enable Pages. Subsequent updates are just `git push client main`.
+
+Her repo must be named `jenniferdiffley.github.io` exactly, or Pages serves the site from
+`/jenniferdiffley/` and `404.html` — which uses root-absolute paths — renders unstyled.
+
+---
+
 ## If the custom domain is connected later
 
 The site currently declares `https://jenniferdiffley.github.io` as its canonical address.

@@ -1,9 +1,10 @@
 # Getting your portfolio live
 
-A step-by-step guide, written for someone who has never used GitHub. Everything happens in
-your web browser — there's nothing to install and no code to touch.
+A step-by-step guide, written for someone who has never used GitHub. Everything on your side
+happens in your web browser — there's nothing to install and no code to touch.
 
-Four steps, about ten minutes, most of it waiting.
+Three short things for you to do, with Joon uploading the site in between. About ten
+minutes of actual clicking.
 
 ---
 
@@ -12,7 +13,7 @@ Four steps, about ten minutes, most of it waiting.
 Your website is a set of files. GitHub stores them and serves them to the internet — free,
 with no monthly fee and nothing to maintain.
 
-Once you've done the four steps below, your portfolio will be live at:
+Once these steps are done, your portfolio will be live at:
 
 **https://jenniferdiffley.github.io**
 
@@ -20,7 +21,7 @@ That is your finished site: a real, permanent, professional address you can put 
 or send to a recruiter today. Nothing about it is temporary or half-built.
 
 You also own **jenniferdiffley.com**, and you can point that at this site later if you'd
-like. That part is optional and separate — the instructions are at the end of this page.
+like. That part is optional and separate — instructions are at the end of this page.
 
 ---
 
@@ -34,62 +35,49 @@ You'll need:
 
 ---
 
-## Step 1 — Copy the site into your account
+## Step 1 — Rename your repository
 
-GitHub can copy the whole website into your account for you. No downloading, no unzipping,
-no dragging files around.
+You already created a repository called `jenniferdiffley`. It just needs a slightly
+different name, because GitHub uses the name to decide your web address.
 
-1. Go to **https://github.com/new/import**
-
-2. In the box labelled **Your old repository's clone URL**, paste exactly this:
-
-   ```
-   https://github.com/joonyoung82/jennifer-diffley-portfolio.git
-   ```
-
-3. Set **Owner** to `jenniferdiffley`
-
-4. Set **Repository name** to exactly:
+1. Go to **https://github.com/jenniferdiffley/jenniferdiffley/settings**
+2. The very first box on that page is **Repository name**
+3. Change it to exactly:
 
    ```
    jenniferdiffley.github.io
    ```
 
-   This spelling matters. It's what gives you the clean web address, rather than one with an
-   extra folder name stuck on the end.
+4. Click **Rename**
 
-5. Leave it set to **Public**.
+That exact spelling — your username, followed by `.github.io` — is what gives you the clean
+address `jenniferdiffley.github.io`. Any other name would give you something longer, like
+`jenniferdiffley.github.io/jenniferdiffley/`.
 
-   Your case studies stay protected either way — they're encrypted, so a public folder
-   contains nothing but scrambled text. There's more on this at the bottom of the page.
-
-6. Click **Begin import**
-
-It takes a minute or two and shows you progress as it goes. When it finishes, all the
-website files are in your own account, under your own name.
-
-> The repository you created earlier, called just `jenniferdiffley`, isn't needed. Leave it
-> alone for now — we can tidy it up whenever.
+Nothing breaks by renaming. GitHub forwards the old name automatically.
 
 ---
 
-## Step 2 — Add Joon so he can make your revisions
+## Step 2 — Give Joon access so he can upload the site
 
-Your package includes revisions. This lets him apply your notes directly, instead of sending
-you files to copy around.
+The repository belongs to you, so he can't add anything to it until you let him in. This
+also means he can apply your revision notes directly later, instead of sending you files to
+copy around.
 
 1. Go to **https://github.com/jenniferdiffley/jenniferdiffley.github.io/settings/access**
 2. Click **Add people**
 3. Type **`joonyoung82`** and send the invitation
 
-You remain the owner the whole time, and you can remove his access with one click once
+You remain the owner throughout, and you can remove his access with a single click once
 you're happy with everything.
+
+Then let him know — he'll upload the website files and message you when they're in.
 
 ---
 
 ## Step 3 — Turn the website on
 
-The files are stored now, but not yet published. This publishes them.
+Once Joon confirms the files are uploaded, this last step publishes them.
 
 1. Open your repository:
    **https://github.com/jenniferdiffley/jenniferdiffley.github.io**
@@ -98,7 +86,7 @@ The files are stored now, but not yet published. This publishes them.
 4. Under **Build and deployment**, check that:
    - **Source** is set to **Deploy from a branch**
    - **Branch** is set to `main`, with the folder beside it set to `/ (root)`
-5. Click **Save** if you changed anything
+5. Click **Save**
 
 Wait two or three minutes, then reload that page. A green banner will appear with your live
 address. Your portfolio is now on the internet.
@@ -184,7 +172,7 @@ internet.
 
 If you'd rather not do this yourself, message Joon and it can be arranged as a small
 add-on. Either way, let him know once it's working, because a few web addresses inside the
-site need updating to match — they're listed for reference at the bottom of `README.md`.
+site need updating to match — they're listed near the end of `README.md`.
 
 ---
 
