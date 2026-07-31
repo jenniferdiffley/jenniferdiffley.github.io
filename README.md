@@ -214,6 +214,27 @@ mail client with the message pre-filled, so it can't silently swallow an enquiry
 
 ---
 
+## If the custom domain is connected later
+
+The site currently declares `https://jenniferdiffley.github.io` as its canonical address.
+If `jenniferdiffley.com` is pointed at it (see the optional section in
+[GITHUB-SETUP.md](GITHUB-SETUP.md)), five references need updating, or search engines and
+link previews will keep resolving to the old address:
+
+| File | What to change |
+|---|---|
+| `index.html` | `<link rel="canonical">` |
+| `index.html` | `og:url` and `og:image` |
+| `index.html` | `"url"` in the JSON-LD block |
+| `robots.txt` | the `Sitemap:` line |
+| `sitemap.xml` | the `<loc>` value |
+
+There's a comment above the canonical tag in `index.html` as a reminder. GitHub creates the
+`CNAME` file itself when the domain is entered in Settings → Pages, so that doesn't need
+adding by hand.
+
+---
+
 ## Browser support
 
 Current Safari, Chrome, Firefox, and Edge. The decryption uses the Web Crypto API

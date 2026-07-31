@@ -1,99 +1,169 @@
-# Publishing the site
+# Getting your portfolio live
 
-## Current state
+A step-by-step guide, written for someone who has never used GitHub. Everything happens in
+your web browser — there's nothing to install and no code to touch.
 
-| Thing | Value |
-|---|---|
-| GitHub account | `jenniferdiffley` |
-| Repository | `jenniferdiffley/jenniferdiffley.github.io` |
-| Live address | `https://jenniferdiffley.github.io` |
-| Formspree endpoint | `https://formspree.io/f/xpqvnkqy` (wired up) |
-| Custom domain | Not configured — optional, see the end of this file |
-
-The delivered site is the GitHub Pages address above. A custom domain is a separate,
-optional step that depends on Jennifer's registrar rather than on the site.
+Four steps, about ten minutes, most of it waiting.
 
 ---
 
-## Step 1 — Jennifer imports the site into her account
+## Where your site will live
 
-Entirely in the browser — no local tooling needed on her side.
+Your website is a set of files. GitHub stores them and serves them to the internet — free,
+with no monthly fee and nothing to maintain.
 
-1. Go to <https://github.com/new/import>
-2. **Your old repository's clone URL:** the source repo's `.git` URL
-3. **Owner:** `jenniferdiffley`
-4. **Repository name:** `jenniferdiffley.github.io` — this exact spelling is what makes
-   Pages serve the site from the domain root rather than a `/subfolder/`. It also means
-   `404.html`, which uses root-absolute paths, renders correctly.
-5. Leave it **Public** and click **Begin import**
+Once you've done the four steps below, your portfolio will be live at:
 
-Naming it anything else still works, but the site would live at
-`jenniferdiffley.github.io/<name>/` and the 404 page would render unstyled.
+**https://jenniferdiffley.github.io**
 
----
+That is your finished site: a real, permanent, professional address you can put on a résumé
+or send to a recruiter today. Nothing about it is temporary or half-built.
 
-## Step 2 — She grants push access for revisions
-
-So that revision notes can be applied directly rather than re-importing:
-
-1. <https://github.com/jenniferdiffley/jenniferdiffley.github.io/settings/access>
-2. **Add people** → the collaborator's GitHub username → send invite
-3. The collaborator accepts via the emailed link
-
-Note that collaborators get **Write**, not **Admin**. Enabling Pages and setting a custom
-domain both require Admin, so those two actions stay with Jennifer.
+You also own **jenniferdiffley.com**, and you can point that at this site later if you'd
+like. That part is optional and separate — the instructions are at the end of this page.
 
 ---
 
-## Step 3 — She enables GitHub Pages
+## Before you start
 
-Repo → **Settings** → **Pages**:
+You'll need:
 
-- **Source:** Deploy from a branch
-- **Branch:** `main`, folder `/ (root)`
-- **Save**
-
-Two or three minutes later the site is live at <https://jenniferdiffley.github.io>.
+- To be logged in to GitHub as **jenniferdiffley**
+- The case study password. Joon is sending that in a separate message — it deliberately
+  isn't written down here, because this page is public.
 
 ---
 
-## Step 4 — Verify
+## Step 1 — Copy the site into your account
 
-- [ ] Site loads over HTTPS with a valid certificate
-- [ ] Dark mode toggles and survives a reload
-- [ ] **Download résumé** downloads the PDF rather than previewing it
-- [ ] A case study shows the gate; the correct password unlocks it and the mocks appear
+GitHub can copy the whole website into your account for you. No downloading, no unzipping,
+no dragging files around.
+
+1. Go to **https://github.com/new/import**
+
+2. In the box labelled **Your old repository's clone URL**, paste exactly this:
+
+   ```
+   https://github.com/joonyoung82/jennifer-diffley-portfolio.git
+   ```
+
+3. Set **Owner** to `jenniferdiffley`
+
+4. Set **Repository name** to exactly:
+
+   ```
+   jenniferdiffley.github.io
+   ```
+
+   This spelling matters. It's what gives you the clean web address, rather than one with an
+   extra folder name stuck on the end.
+
+5. Leave it set to **Public**.
+
+   Your case studies stay protected either way — they're encrypted, so a public folder
+   contains nothing but scrambled text. There's more on this at the bottom of the page.
+
+6. Click **Begin import**
+
+It takes a minute or two and shows you progress as it goes. When it finishes, all the
+website files are in your own account, under your own name.
+
+> The repository you created earlier, called just `jenniferdiffley`, isn't needed. Leave it
+> alone for now — we can tidy it up whenever.
+
+---
+
+## Step 2 — Add Joon so he can make your revisions
+
+Your package includes revisions. This lets him apply your notes directly, instead of sending
+you files to copy around.
+
+1. Go to **https://github.com/jenniferdiffley/jenniferdiffley.github.io/settings/access**
+2. Click **Add people**
+3. Type **`joonyoung82`** and send the invitation
+
+You remain the owner the whole time, and you can remove his access with one click once
+you're happy with everything.
+
+---
+
+## Step 3 — Turn the website on
+
+The files are stored now, but not yet published. This publishes them.
+
+1. Open your repository:
+   **https://github.com/jenniferdiffley/jenniferdiffley.github.io**
+2. Click **Settings** — in the row of tabs across the top, at the right-hand end
+3. In the left-hand sidebar, click **Pages**
+4. Under **Build and deployment**, check that:
+   - **Source** is set to **Deploy from a branch**
+   - **Branch** is set to `main`, with the folder beside it set to `/ (root)`
+5. Click **Save** if you changed anything
+
+Wait two or three minutes, then reload that page. A green banner will appear with your live
+address. Your portfolio is now on the internet.
+
+> If you see "page not found" at first, that's normal on the very first publish. Wait five
+> minutes and reload with **Cmd + Shift + R** (**Ctrl + Shift + R** on Windows).
+
+---
+
+## Step 4 — Check it over
+
+Please work through this list and tell Joon about anything that looks off, however small.
+Wording, spacing, a photo you'd rather swap — all fair game. That's what the revisions are
+for.
+
+- [ ] The homepage loads, with your name, photo, and every section
+- [ ] The sun/moon button at the top right switches to dark mode, and it stays switched
+      after you reload
+- [ ] **Résumé** downloads the PDF rather than opening it in a tab
+- [ ] Clicking a case study brings up a password screen
+- [ ] The correct password unlocks it and the design images appear
 - [ ] A wrong password shows an error and reveals nothing
-- [ ] View Source on a case study shows only ciphertext
-- [ ] `https://jenniferdiffley.github.io/assets/mocks/` returns 404 — the mocks must have
-      no fetchable URL of their own
-- [ ] The lightbox opens when a mock is clicked
-- [ ] Contact form submits and the message arrives via Formspree
-- [ ] A made-up URL such as `/nope` shows the styled 404 page
-- [ ] Layout holds on a phone
+- [ ] Clicking an image inside a case study enlarges it
+- [ ] In the Copywriting section, the Younique catalogue opens, and the Nuro, Medium and
+      1Password links all work
+- [ ] Sending yourself a message through the contact form arrives in your inbox
+- [ ] Everything looks right on your phone
+
+It's worth opening the case studies in a browser you've never used them in — that way you
+see exactly what a recruiter sees.
 
 ---
 
-## Making changes
+## If something looks wrong
 
-```bash
-git add -A && git commit -m "Describe the change" && git push
-```
+**"Page not found" at your new address**
+The first publish takes a few minutes. Wait five, then reload with **Cmd + Shift + R**.
 
-Pages redeploys in about a minute. To change the case study password or edit a case study,
-see `README.md` — those steps require `node tools/build.mjs`, because the case studies are
-encrypted at build time.
+**The site loads but looks like plain text on a white page**
+The repository name is probably slightly off. It needs to be exactly
+`jenniferdiffley.github.io`. You can correct it under **Settings → General → Repository
+name**.
+
+**A case study says JavaScript is needed**
+The case studies are decrypted inside your browser, so JavaScript has to be switched on. It
+is by default in every normal browser.
+
+**The password won't work**
+Check for a stray space copied at the beginning or end. It's also case-sensitive.
+
+**Anything else**
+Send Joon a screenshot and the address you were on. Nothing you can click will break
+anything permanently — every version is saved, and anything can be undone.
 
 ---
 
-## Optional — using a custom domain
+## Optional — pointing jenniferdiffley.com at your site
 
-**Not part of the build, and not configured.** The site is delivered and complete at the
-GitHub Pages address. This section exists so the steps are on record if Jennifer wants to
-point `jenniferdiffley.com` at it; the work happens at her registrar, which nobody else
-can access on her behalf.
+Your site is complete and live at the GitHub address above. This part is optional and sits
+outside the original build: the website itself is the deliverable, whereas a custom domain
+is configured at your domain registrar, which only you can log into. The steps are short,
+so they're here in case you want them.
 
-**1. At her domain registrar**, replace any existing `A` records for `@`:
+**1.** Wherever `jenniferdiffley.com` is managed, add the records below. Replace any
+existing A records for `@` rather than adding alongside them.
 
 | Type | Name | Value |
 |---|---|---|
@@ -103,28 +173,47 @@ can access on her behalf.
 | A | `@` | `185.199.111.153` |
 | CNAME | `www` | `jenniferdiffley.github.io.` |
 
-**2. In GitHub** → Settings → Pages → **Custom domain** → enter `jenniferdiffley.com` →
-Save. GitHub writes a `CNAME` file into the repo automatically.
+**2.** Back in GitHub: **Settings → Pages → Custom domain**, type `jenniferdiffley.com`,
+and click **Save**.
 
-**3.** Once the DNS check passes, tick **Enforce HTTPS**. The certificate can take up to an
-hour to issue, and the checkbox stays greyed out until it does.
+**3.** Once GitHub's check passes, tick **Enforce HTTPS**. The security certificate can take
+up to an hour to issue, so that box stays greyed out until it's ready.
 
-**4.** Verify:
+Domain changes usually take a few minutes but can take several hours to spread across the
+internet.
 
-```bash
-dig +short jenniferdiffley.com
-curl -sI https://jenniferdiffley.com | head -1
-```
+If you'd rather not do this yourself, message Joon and it can be arranged as a small
+add-on. Either way, let him know once it's working, because a few web addresses inside the
+site need updating to match — they're listed for reference at the bottom of `README.md`.
 
-DNS propagation is usually minutes but can take several hours.
+---
 
-**5.** Afterwards, five references should be updated from the github.io address to the
-custom domain, or search engines and link previews will keep pointing at the old one:
+## A note on the password
 
-- `index.html` — `<link rel="canonical">`
-- `index.html` — `og:url` and `og:image`
-- `index.html` — `"url"` in the JSON-LD block
-- `robots.txt` — the `Sitemap:` line
-- `sitemap.xml` — the `<loc>` value
+Your case studies aren't merely hidden behind a prompt — they're genuinely encrypted with
+the same class of encryption used for banking.
 
-These are marked with a comment in `index.html`. It's a two-minute edit.
+In practice that means:
+
+- The published files contain scrambled text only. Viewing the page source shows nothing
+  readable.
+- The design images are encrypted *inside* those files, so nobody can guess an image
+  address and download your Amazon mockups directly.
+- The password is never stored on the site or sent anywhere. It's used to unscramble the
+  content inside your visitor's own browser.
+
+Two practical things: share the password by email or message rather than posting it
+anywhere public, and if you ever want it changed, just ask — it takes a couple of minutes.
+
+---
+
+## Making changes later
+
+Send changes to Joon and he'll make them. If you'd like to edit your own text down the
+line, he can show you — it's genuinely just a few clicks.
+
+One thing to avoid: don't delete the folder called `tools`, or anything inside `assets`.
+The case studies are rebuilt from those.
+
+Technical notes about how the site is built, how to change the password, and how to edit a
+case study are in **[README.md](README.md)**.
