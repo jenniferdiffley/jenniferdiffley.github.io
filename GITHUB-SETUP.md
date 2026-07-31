@@ -1,73 +1,99 @@
 # Publishing the site
 
-Jennifer's accounts are already set up, so most of the original guesswork is gone.
-Current state:
+## Current state
 
 | Thing | Value |
 |---|---|
 | GitHub account | `jenniferdiffley` |
-| Repository | `https://github.com/jenniferdiffley/jenniferdiffley` |
-| Custom domain | `jenniferdiffley.com` (she owns it) |
-| Live address | `https://jenniferdiffley.com` |
+| Repository | `jenniferdiffley/jenniferdiffley.github.io` |
+| Live address | `https://jenniferdiffley.github.io` |
 | Formspree endpoint | `https://formspree.io/f/xpqvnkqy` (wired up) |
+| Custom domain | Not configured — optional, see the end of this file |
+
+The delivered site is the GitHub Pages address above. A custom domain is a separate,
+optional step that depends on Jennifer's registrar rather than on the site.
 
 ---
 
-## Step 1 — Jennifer grants push access
+## Step 1 — Jennifer imports the site into her account
 
-The repository is on her account, so she has to let you in. Ask her to:
+Entirely in the browser — no local tooling needed on her side.
 
-1. Open <https://github.com/jenniferdiffley/jenniferdiffley/settings/access>
-2. Click **Add people**
-3. Enter the collaborator's GitHub username and send the invite
-4. The collaborator accepts via the emailed link
+1. Go to <https://github.com/new/import>
+2. **Your old repository's clone URL:** the source repo's `.git` URL
+3. **Owner:** `jenniferdiffley`
+4. **Repository name:** `jenniferdiffley.github.io` — this exact spelling is what makes
+   Pages serve the site from the domain root rather than a `/subfolder/`. It also means
+   `404.html`, which uses root-absolute paths, renders correctly.
+5. Leave it **Public** and click **Begin import**
 
-This is much less error-prone than walking a non-technical client through GitHub Desktop
-and a manual file copy — and it avoids the risk of her accidentally uploading `src/`.
-
----
-
-## Step 2 — Push
-
-From the project folder:
-
-```bash
-git remote add origin https://github.com/jenniferdiffley/jenniferdiffley.git
-git push -u origin main
-```
-
-If the remote already exists, update it instead:
-
-```bash
-git remote set-url origin https://github.com/jenniferdiffley/jenniferdiffley.git
-```
-
-> **Before pushing, confirm what's tracked:**
-> ```bash
-> git ls-files | grep -E '^src/|password|pw\.txt'   # must print nothing
-> ```
-> `src/` holds the readable case studies and the unreleased Amazon mocks. If those go up,
-> the encryption is pointless.
+Naming it anything else still works, but the site would live at
+`jenniferdiffley.github.io/<name>/` and the 404 page would render unstyled.
 
 ---
 
-## Step 3 — Enable GitHub Pages
+## Step 2 — She grants push access for revisions
 
-On github.com → the repo → **Settings** → **Pages**:
+So that revision notes can be applied directly rather than re-importing:
+
+1. <https://github.com/jenniferdiffley/jenniferdiffley.github.io/settings/access>
+2. **Add people** → the collaborator's GitHub username → send invite
+3. The collaborator accepts via the emailed link
+
+Note that collaborators get **Write**, not **Admin**. Enabling Pages and setting a custom
+domain both require Admin, so those two actions stay with Jennifer.
+
+---
+
+## Step 3 — She enables GitHub Pages
+
+Repo → **Settings** → **Pages**:
 
 - **Source:** Deploy from a branch
 - **Branch:** `main`, folder `/ (root)`
 - **Save**
 
-The `CNAME` file in the repo root already contains `jenniferdiffley.com`, so Pages will
-pick the custom domain up automatically once DNS resolves.
+Two or three minutes later the site is live at <https://jenniferdiffley.github.io>.
 
 ---
 
-## Step 4 — Point the domain at GitHub
+## Step 4 — Verify
 
-Jennifer needs to add these records wherever `jenniferdiffley.com` is managed (her
-registrar or host). Existing A records for `@` should be replaced, not added to.
+- [ ] Site loads over HTTPS with a valid certificate
+- [ ] Dark mode toggles and survives a reload
+- [ ] **Download résumé** downloads the PDF rather than previewing it
+- [ ] A case study shows the gate; the correct password unlocks it and the mocks appear
+- [ ] A wrong password shows an error and reveals nothing
+- [ ] View Source on a case study shows only ciphertext
+- [ ] `https://jenniferdiffley.github.io/assets/mocks/` returns 404 — the mocks must have
+      no fetchable URL of their own
+- [ ] The lightbox opens when a mock is clicked
+- [ ] Contact form submits and the message arrives via Formspree
+- [ ] A made-up URL such as `/nope` shows the styled 404 page
+- [ ] Layout holds on a phone
+
+---
+
+## Making changes
+
+```bash
+git add -A && git commit -m "Describe the change" && git push
+```
+
+Pages redeploys in about a minute. To change the case study password or edit a case study,
+see `README.md` — those steps require `node tools/build.mjs`, because the case studies are
+encrypted at build time.
+
+---
+
+## Optional — using a custom domain
+
+**Not part of the build, and not configured.** The site is delivered and complete at the
+GitHub Pages address. This section exists so the steps are on record if Jennifer wants to
+point `jenniferdiffley.com` at it; the work happens at her registrar, which nobody else
+can access on her behalf.
+
+**1. At her domain registrar**, replace any existing `A` records for `@`:
 
 | Type | Name | Value |
 |---|---|---|
@@ -77,51 +103,28 @@ registrar or host). Existing A records for `@` should be replaced, not added to.
 | A | `@` | `185.199.111.153` |
 | CNAME | `www` | `jenniferdiffley.github.io.` |
 
-Then in **Settings → Pages → Custom domain**, confirm `jenniferdiffley.com` is present and
-the DNS check passes. Once it does, tick **Enforce HTTPS** (the certificate can take up to
-an hour to issue — the checkbox stays greyed out until then).
+**2. In GitHub** → Settings → Pages → **Custom domain** → enter `jenniferdiffley.com` →
+Save. GitHub writes a `CNAME` file into the repo automatically.
 
-DNS propagation is usually minutes but can take several hours. Verify with:
+**3.** Once the DNS check passes, tick **Enforce HTTPS**. The certificate can take up to an
+hour to issue, and the checkbox stays greyed out until it does.
+
+**4.** Verify:
 
 ```bash
 dig +short jenniferdiffley.com
 curl -sI https://jenniferdiffley.com | head -1
 ```
 
-> **Note on the repo name.** The repo is `jenniferdiffley`, not
-> `jenniferdiffley.github.io`, which makes it a *project* page. That's fine — with a custom
-> domain the site is still served at the domain root, so every path works. The only side
-> effect is that the bare fallback URL is
-> `jenniferdiffley.github.io/jenniferdiffley/`, where `404.html` renders unstyled because
-> it uses root-absolute paths. Harmless, since `jenniferdiffley.com` is the address she'll
-> actually share. Renaming the repo to `jenniferdiffley.github.io` would tidy that up if
-> you'd rather.
+DNS propagation is usually minutes but can take several hours.
 
----
+**5.** Afterwards, five references should be updated from the github.io address to the
+custom domain, or search engines and link previews will keep pointing at the old one:
 
-## Step 5 — Test the live site
+- `index.html` — `<link rel="canonical">`
+- `index.html` — `og:url` and `og:image`
+- `index.html` — `"url"` in the JSON-LD block
+- `robots.txt` — the `Sitemap:` line
+- `sitemap.xml` — the `<loc>` value
 
-- [ ] `https://jenniferdiffley.com` loads over HTTPS with a valid certificate
-- [ ] `http://` and `www.` both redirect to the canonical HTTPS address
-- [ ] Dark mode toggle works and survives a reload
-- [ ] **Download résumé** downloads the PDF rather than previewing it
-- [ ] A case study shows the password gate; the correct password unlocks it and the mocks appear
-- [ ] A wrong password shows an error and reveals nothing
-- [ ] View Source on a case study shows only ciphertext
-- [ ] `https://jenniferdiffley.com/assets/mocks/` returns 404 (the mocks must have no URL)
-- [ ] Contact form submits and the message arrives in her inbox via Formspree
-- [ ] A made-up URL like `/nope` shows the styled 404 page
-- [ ] Layout holds up on a phone
-
----
-
-## Making changes later
-
-Edit, commit, push — Pages redeploys in about a minute:
-
-```bash
-git add -A && git commit -m "Describe the change" && git push
-```
-
-To change the case study password or edit a case study, see `README.md`. Those steps
-require `node tools/build.mjs`, because the case studies are encrypted at build time.
+These are marked with a comment in `index.html`. It's a two-minute edit.

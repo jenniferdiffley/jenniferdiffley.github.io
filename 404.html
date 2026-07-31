@@ -12,10 +12,9 @@
 <!-- Root-absolute paths are deliberate. GitHub Pages serves this file for a
      missing URL at ANY depth, so a relative href would resolve against that
      path (a bad /case-studies/xyz would look for /case-studies/main.css and
-     load nothing). This is correct because the site is served at the root of
-     the custom domain jenniferdiffley.com — see CNAME. Note that the bare
-     GitHub fallback URL is a project page under a subpath, where this one
-     page will render unstyled; the custom domain is the canonical address. -->
+     load nothing). This is correct because the repo is named
+     jenniferdiffley.github.io, which Pages serves from the domain root. If the
+     site ever moves to a repo served under a subpath, prefix both with it. -->
 <link rel="stylesheet" href="/main.css">
 <script>
   (function () {

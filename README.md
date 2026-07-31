@@ -7,7 +7,9 @@ decrypted in the browser with a password.
 **Publishing?** See **[GITHUB-SETUP.md](GITHUB-SETUP.md)** — repo, DNS, and the launch
 checklist.
 
-Live at **https://jenniferdiffley.com** (repo: `jenniferdiffley/jenniferdiffley`).
+Live at **https://jenniferdiffley.github.io** (repo: `jenniferdiffley/jenniferdiffley.github.io`).
+
+A custom domain is optional and not configured — see the end of GITHUB-SETUP.md.
 
 ---
 
@@ -23,7 +25,6 @@ Live at **https://jenniferdiffley.com** (repo: `jenniferdiffley/jenniferdiffley`
 | `case-study.js` | In-browser AES decryption and image lightbox | ✅ |
 | `case-studies/*.html` | Generated. Contains **ciphertext only** | ✅ |
 | `assets/` | Headshot and résumé PDF | ✅ |
-| `CNAME` | Custom domain for GitHub Pages (`jenniferdiffley.com`) | ✅ |
 | `assets/resume-data.js` | Generated. Base64 résumé, used only as a download fallback | ✅ |
 | `tools/build.mjs` | The encryption build script | ✅ |
 | `tools/template.html` | Page shell the build script fills in | ✅ |
