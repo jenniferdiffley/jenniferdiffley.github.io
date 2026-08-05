@@ -3,8 +3,11 @@
 A step-by-step guide, written for someone who has never used GitHub. Everything on your side
 happens in your web browser — there's nothing to install and no code to touch.
 
-Three short things for you to do, with Joon uploading the site in between. About ten
-minutes of actual clicking.
+**Your site is uploaded and ready. One step is left, and it has to be you:** publishing is an
+owner-only setting, and the access you gave Joon deliberately doesn't reach repository
+settings. It's five clicks — [Step 3](#step-3--turn-the-website-on) below, about two minutes.
+
+Steps 1 and 2 are already done. They're kept here as a record of how the site was set up.
 
 ---
 
@@ -13,7 +16,7 @@ minutes of actual clicking.
 Your website is a set of files. GitHub stores them and serves them to the internet — free,
 with no monthly fee and nothing to maintain.
 
-Once these steps are done, your portfolio will be live at:
+Once Step 3 is done, your portfolio will be live at:
 
 **https://jenniferdiffley.github.io**
 
@@ -35,73 +38,67 @@ You'll need:
 
 ---
 
-## Step 1 — Rename your repository
+## Step 1 — Your repository ✅ done
 
-You already created a repository called `jenniferdiffley`. It just needs a slightly
-different name, because GitHub uses the name to decide your web address.
+You created it with exactly the right name:
 
-1. Go to **https://github.com/jenniferdiffley/jenniferdiffley/settings**
-2. The very first box on that page is **Repository name**
-3. Change it to exactly:
+```
+jenniferdiffley.github.io
+```
 
-   ```
-   jenniferdiffley.github.io
-   ```
+That spelling — your username, followed by `.github.io` — is what gives you the clean
+address `jenniferdiffley.github.io`. Any other name would have produced something longer,
+like `jenniferdiffley.github.io/portfolio/`.
 
-4. Click **Rename**
-
-That exact spelling — your username, followed by `.github.io` — is what gives you the clean
-address `jenniferdiffley.github.io`. Any other name would give you something longer, like
-`jenniferdiffley.github.io/jenniferdiffley/`.
-
-Nothing breaks by renaming. GitHub forwards the old name automatically.
-
-**While you're on that page, one thing to confirm.** Scroll to the bottom, to the section
-headed **Danger Zone**. It should read *"Change repository visibility — This repository is
-currently public."* If it says **private**, click **Change visibility** and switch it to
-public.
-
-On a free GitHub account, websites can only be published from public repositories, so the
-site won't go live otherwise. Your case studies stay protected either way — they're
+It's also set to **public**, which matters: on a free GitHub account, websites can only be
+published from public repositories. Your case studies stay protected either way — they're
 encrypted, so a public folder contains nothing but scrambled text.
 
 ---
 
-## Step 2 — Give Joon access so he can upload the site
+## Step 2 — Joon's access, and the upload ✅ done
 
-The repository belongs to you, so he can't add anything to it until you let him in. This
-also means he can apply your revision notes directly later, instead of sending you files to
-copy around.
+You invited **`joonyoung82`** as a collaborator, and the finished site is now in your
+repository — you'll see the files listed when you open it.
 
-1. Go to **https://github.com/jenniferdiffley/jenniferdiffley.github.io/settings/access**
-2. Click **Add people**
-3. Type **`joonyoung82`** and send the invitation
+His access level is **write**, which lets him add and update the site files, including
+applying your revision notes directly. It does *not* include repository settings. That's
+the reason the next step has to be you rather than him.
 
 You remain the owner throughout, and you can remove his access with a single click once
 you're happy with everything.
-
-Then let him know — he'll upload the website files and message you when they're in.
 
 ---
 
 ## Step 3 — Turn the website on
 
-Once Joon confirms the files are uploaded, this last step publishes them.
+This is the only step left. It tells GitHub to start serving the files that are already
+sitting in your repository.
+
+> **Before you start, this is normal:** visiting **https://jenniferdiffley.github.io** right
+> now shows a GitHub page reading *"404 — There isn't a GitHub Pages site here."* Your files
+> are uploaded; GitHub simply hasn't been told to publish them yet. This step is what tells
+> it.
 
 1. Open your repository:
    **https://github.com/jenniferdiffley/jenniferdiffley.github.io**
 2. Click **Settings** — in the row of tabs across the top, at the right-hand end
 3. In the left-hand sidebar, click **Pages**
-4. Under **Build and deployment**, check that:
-   - **Source** is set to **Deploy from a branch**
-   - **Branch** is set to `main`, with the folder beside it set to `/ (root)`
+4. Under **Build and deployment**, set:
+   - **Source** to **Deploy from a branch**
+   - **Branch** to `main`, with the folder beside it set to `/ (root)`
 5. Click **Save**
 
 Wait two or three minutes, then reload that page. A green banner will appear with your live
 address. Your portfolio is now on the internet.
 
-> If you see "page not found" at first, that's normal on the very first publish. Wait five
-> minutes and reload with **Cmd + Shift + R** (**Ctrl + Shift + R** on Windows).
+> If the sidebar has no **Pages** entry and the page says *"You don't have access to
+> repository options,"* you're signed in as someone other than **jenniferdiffley** — sign
+> out and back in as yourself.
+
+> If you see "page not found" straight after saving, that's normal on the very first
+> publish. Wait five minutes and reload with **Cmd + Shift + R** (**Ctrl + Shift + R** on
+> Windows).
 
 ---
 
@@ -114,7 +111,8 @@ for.
 - [ ] The homepage loads, with your name, photo, and every section
 - [ ] The sun/moon button at the top right switches to dark mode, and it stays switched
       after you reload
-- [ ] **Résumé** downloads the PDF rather than opening it in a tab
+- [ ] **Résumé** downloads the PDF rather than opening it in a tab, and the file that lands
+      is `Jennifer-Diffley-Resume-2026.pdf`
 - [ ] Clicking a case study brings up a password screen
 - [ ] The correct password unlocks it and the design images appear
 - [ ] A wrong password shows an error and reveals nothing
@@ -131,12 +129,16 @@ see exactly what a recruiter sees.
 
 ## If something looks wrong
 
-**"Page not found" at your new address**
+**"404 — There isn't a GitHub Pages site here"**
+Step 3 hasn't been done yet, or hasn't finished. This is GitHub saying "no website is
+switched on at this address" — not "your files are missing." Go back to Step 3.
+
+**"Page not found" straight after finishing Step 3**
 The first publish takes a few minutes. Wait five, then reload with **Cmd + Shift + R**.
 
 **The site loads but looks like plain text on a white page**
-The repository name is probably slightly off. It needs to be exactly
-`jenniferdiffley.github.io`. You can correct it under **Settings → General → Repository
+The repository name has to stay exactly `jenniferdiffley.github.io`. If it's ever renamed,
+the styling stops loading. You can correct it under **Settings → General → Repository
 name**.
 
 **A case study says JavaScript is needed**
