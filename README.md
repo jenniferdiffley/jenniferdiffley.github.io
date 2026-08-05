@@ -146,9 +146,9 @@ experience + education, skills, recommendations, contact, footer.
 
 ## Replacing the résumé
 
-Drop the new PDF in at `assets/Jennifer-Diffley-Resume-2025.pdf` (keep the filename, or
-update the two `href`s in `index.html`), then run `node tools/build.mjs` to regenerate
-`assets/resume-data.js`.
+Drop the new PDF in at `assets/Jennifer-Diffley-Resume-2026.pdf` (keep the filename, or
+update the two `href`s in `index.html` and `RESUME` in `tools/build.mjs`), then run
+`node tools/build.mjs` to regenerate `assets/resume-data.js`.
 
 That generated file is a base64 copy of the PDF. The "Download résumé" buttons force a
 real download by building a Blob rather than trusting the `download` attribute — Safari
