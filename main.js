@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Jennifer Diffley — portfolio behavior
+   Jennifer Diffley Robertson — portfolio behavior
    No dependencies. Progressive enhancement only.
    ========================================================================== */
 (function () {
