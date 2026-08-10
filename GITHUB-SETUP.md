@@ -112,7 +112,7 @@ for.
 - [ ] The sun/moon button at the top right switches to dark mode, and it stays switched
       after you reload
 - [ ] **Résumé** downloads the PDF rather than opening it in a tab, and the file that lands
-      is `Jennifer-Diffley-Resume-2026.pdf`
+      is `Jennifer-Diffley-Robertson-Resume-2026.pdf`
 - [ ] Clicking a case study brings up a password screen
 - [ ] The correct password unlocks it and the design images appear
 - [ ] A wrong password shows an error and reveals nothing

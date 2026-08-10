@@ -154,7 +154,7 @@ function buildNav(index) {
    real download even where fetch() is unavailable (notably file://). main.js
    only loads this file if fetch fails, so it costs nothing normally.
    -------------------------------------------------------------------------- */
-const RESUME = 'Jennifer-Diffley-Resume-2026.pdf';
+const RESUME = 'Jennifer-Diffley-Robertson-Resume-2026.pdf';
 
 async function buildResumeFallback() {
   const pdfPath = join(ROOT, 'assets', RESUME);

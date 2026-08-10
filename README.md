@@ -7,7 +7,7 @@ decrypted in the browser with a password.
 **Publishing?** See **[GITHUB-SETUP.md](GITHUB-SETUP.md)** — repo, DNS, and the launch
 checklist.
 
-Live at **https://jenniferdiffley.github.io** (repo: `jenniferdiffley/jenniferdiffley.github.io`).
+Live at **https://jenniferdiffley.com** (repo: `jenniferdiffley/jenniferdiffley.github.io`).
 
 A custom domain is optional and not configured — see the end of GITHUB-SETUP.md.
 
@@ -146,7 +146,7 @@ experience + education, skills, recommendations, contact, footer.
 
 ## Replacing the résumé
 
-Drop the new PDF in at `assets/Jennifer-Diffley-Resume-2026.pdf` (keep the filename, or
+Drop the new PDF in at `assets/Jennifer-Diffley-Robertson-Resume-2026.pdf` (keep the filename, or
 update the two `href`s in `index.html` and `RESUME` in `tools/build.mjs`), then run
 `node tools/build.mjs` to regenerate `assets/resume-data.js`.
 
@@ -245,14 +245,14 @@ Her repo must be named `jenniferdiffley.github.io` exactly, or Pages serves the 
 
 ---
 
-## If the custom domain is connected later
+## Custom domain
 
-The site currently declares `https://jenniferdiffley.github.io` as its canonical address.
-If `jenniferdiffley.com` is pointed at it (see the optional section in
-[GITHUB-SETUP.md](GITHUB-SETUP.md)), five references need updating, or search engines and
-link previews will keep resolving to the old address:
+`jenniferdiffley.com` is connected and is the site's canonical address. GitHub still serves
+the same repo, so `jenniferdiffley.github.io` redirects here.
 
-| File | What to change |
+All six references were updated when the domain went live:
+
+| File | What changed |
 |---|---|
 | `index.html` | `<link rel="canonical">` |
 | `index.html` | `og:url` and `og:image` |
@@ -260,9 +260,9 @@ link previews will keep resolving to the old address:
 | `robots.txt` | the `Sitemap:` line |
 | `sitemap.xml` | the `<loc>` value |
 
-There's a comment above the canonical tag in `index.html` as a reminder. GitHub creates the
-`CNAME` file itself when the domain is entered in Settings → Pages, so that doesn't need
-adding by hand.
+GitHub creates the `CNAME` file itself when the domain is entered in Settings → Pages, so it
+lives on the client remote rather than here — pull before pushing, or the domain config can be
+clobbered.
 
 ---
 
